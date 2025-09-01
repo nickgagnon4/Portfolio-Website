@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Portfolio</title>
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+     <nav>
+        <div class="left">
+            <a href="/">Nicholas Gagnon</a>
+        </div>
+
+        <div class="right">
+            <a href="http://github.com/nickgagnon4" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-github"></i>
+                <span>Github</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/n1cholasgagnon/" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+
+            <a href="mailto:n1ck.gagnon@icloud.com">
+                <i class="fa-solid fa-envelope"></i>
+                <span>Email</span>
+            </a>            
+        </div>
+     </nav>
+
+     <main>
+        <!-- SECTION 1 -->
+        <section class="hero-section">
+            <div class="text">
+                <h2>Hi, I'm Nick</h2>
+                <p>I'm a graduate student at Rensselaer Polytechnic Institute pursuing a Master's in Business Analytics. With a background in marketing and strategy, I specialize in combining data-driven insights with creative problem-solving to deliver measurable business impact. My academic and professional experiences span analytics, market research, and brand development, giving me a versatile foundation in both quantitative and strategic disciplines. I'm passionate about using data to uncover opportunities, optimize performance, and drive meaningful growth.</p>
+
+                <div class="links">
+                    <a href="#skills">
+                        <i class="fa-solid fa-code"></i>
+                        <span>Skills</span>
+                    </a>
+
+                    <a href="#projects">
+                        <i class="fa-solid fa-diagram-project"></i>
+                        <span>Projects</span>
+                    </a>
+
+                    <a href="#contact">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Contact</span>   
+                    </a>            
+                </div>
+            </div>
+
+            <div class="headshot">
+                <img src="images/nicholasgagnon.webp" alt="nicholas gagnon headshot">
+            </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section id="skills" class="skills-section">
+            <h2>Skills</h2>
+            <div class="text">
+                I bring a versatile mix of technical and analytical skills that bridge data, business, and technology. Proficient in Python for data analysis, visualization, and modeling, with additional experience in SQL for database management and querying. I have a solid foundation in HTML, CSS, and JavaScript, enabling me to design, customize, and add interactivity to web projects.
+            </div>
+
+            <div class="cells">
+                <div class="cell">
+                    <img src="images/python-logo.webp" alt="python logo">
+                    <span>Python</span>
+                </div>
+
+                <div class="cell">
+                    <img src="images/sql-logo.webp" alt="sql logo">
+                    <span>SQL</span>
+                </div>
+
+                <div class="cell">
+                    <img src="images/html-logo.webp" alt="html logo">
+                    <span>HTML</span>
+                </div>
+
+                <div class="cell">
+                    <img src="images/css-logo.webp" alt="css logo">
+                    <span>CSS</span>
+                </div>
+                
+                <div class="cell">
+                    <img src="images/javascript-logo.webp" alt="javascript logo">
+                    <span>JavaScript</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section id="projects" class="projects-section">
+            <h2>Projects</h2>
+            <div class="group">
+                <div class="project-details">
+                    <img src="images/project-headshot.webp">
+                    <p>Third-Place Winner</p>
+                    <p>Spark Tank Competition.</p>
+                </div>
+
+                <div class="text">
+                    I work on projects that merge business strategy with analytics and innovation. Notably, I contributed to a Spark Tank project, developing creative solutions with measurable impact. My portfolio spans market research, data-driven insights, and problem-solving initiatives, showcasing both technical expertise and strategic thinking across diverse challenges.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section id="contact" class="contact-section">
+            <h2>Contact</h2>
+
+            <div class="group">
+                <div class="text">
+                    Let's connect! I'm always open to new conversations, collaborations, and opportunities. Whether you'd like to work together on a project, share ideas, or just say hello, feel free to reach out through email or LinkedIn. I enjoy meeting new people and building meaningful connections.
+                </div>
+
+                <form>
+                    <label for="name">Name</label>
+                    <input type="text" id="name">
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email">
+
+                    <label for="message">Message</label>
+                    <textarea name="message" cols="30" rows="10"></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+     </main>
+</body>
+</html>
