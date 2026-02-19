@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Nicholas Gagnon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff;
+      --off-white: #f5f5f7;
+      --light-gray: #e8e8ed;
+      --mid-gray: #86868b;
+      --dark-gray: #1d1d1f;
+      --accent: #0071e3;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark-gray); background: var(--white); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 32px;
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 17px; font-weight: 500; color: var(--dark-gray); text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--dark-gray); text-decoration: none; opacity: 0.75; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a.active { opacity: 1; font-weight: 500; }
+    .nav-resume { font-size: 13px; font-weight: 500; color: var(--accent); text-decoration: none; }
+
+    .btn-white { display: inline-block; padding: 13px 26px; background: white; color: var(--dark-gray); border-radius: 980px; font-size: 15px; font-weight: 500; text-decoration: none; transition: opacity 0.2s; }
+    .btn-white:hover { opacity: 0.85; }
+    .btn-outline-white { display: inline-block; padding: 13px 26px; background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 980px; font-size: 15px; font-weight: 500; text-decoration: none; transition: border-color 0.2s; }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.8); }
+
+    /* PAGE HERO */
+    .page-hero { padding: 130px 32px 72px; background: var(--dark-gray); text-align: center; }
+    .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #5ac8fa; margin-bottom: 14px; }
+    .page-title { font-family: var(--font-display); font-size: clamp(40px, 6vw, 68px); font-weight: 400; letter-spacing: -2px; color: white; margin-bottom: 18px; }
+    .page-sub { font-size: 19px; font-weight: 300; color: rgba(255,255,255,0.5); max-width: 480px; margin: 0 auto; line-height: 1.6; }
+
+    /* FILTER */
+    .filter-bar { background: var(--off-white); padding: 24px 32px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; border-bottom: 1px solid var(--light-gray); }
+    .filter-btn { padding: 7px 18px; border-radius: 980px; font-size: 14px; font-weight: 500; border: 1.5px solid var(--light-gray); background: white; color: var(--dark-gray); cursor: pointer; font-family: var(--font-body); transition: all 0.18s; }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--dark-gray); color: white; border-color: var(--dark-gray); }
+
+    /* HERO PROJECT */
+    .hero-proj { padding: 80px 32px; }
+    .hero-proj-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-proj-img { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 56px rgba(0,0,0,0.13); }
+    .hero-proj-img img { width: 100%; height: 380px; object-fit: cover; display: block; transition: transform 0.5s; }
+    .hero-proj-img:hover img { transform: scale(1.04); }
+    .proj-cat { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .hero-proj-body h2 { font-family: var(--font-display); font-size: clamp(26px, 4vw, 38px); font-weight: 400; letter-spacing: -1px; margin-bottom: 18px; line-height: 1.2; }
+    .hero-proj-body p { font-size: 16px; color: #515154; line-height: 1.78; font-weight: 300; margin-bottom: 16px; }
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+    .tech-tag { padding: 4px 13px; background: var(--off-white); border-radius: 980px; font-size: 13px; font-weight: 500; border: 1px solid var(--light-gray); }
+    .outcome-list { margin-top: 20px; }
+    .outcome { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+    .outcome-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); margin-top: 8px; flex-shrink: 0; }
+    .outcome p { font-size: 15px; color: #515154; line-height: 1.65; font-weight: 300; }
+
+    /* ALL PROJECTS */
+    .all-proj { background: var(--off-white); padding: 80px 32px; }
+    .all-proj-inner { max-width: 1080px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(26px, 4vw, 38px); font-weight: 400; letter-spacing: -1px; margin-bottom: 44px; }
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .proj-card { background: white; border-radius: 18px; overflow: hidden; border: 1px solid var(--light-gray); transition: transform 0.22s, box-shadow 0.22s; cursor: pointer; }
+    .proj-card:hover { transform: translateY(-7px); box-shadow: 0 20px 52px rgba(0,0,0,0.11); }
+    .proj-card-img { height: 190px; overflow: hidden; }
+    .proj-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+    .proj-card:hover .proj-card-img img { transform: scale(1.07); }
+    .proj-card-body { padding: 22px 22px 26px; }
+    .proj-card-body .proj-cat { font-size: 11px; }
+    .proj-card-body h3 { font-family: var(--font-display); font-size: 19px; font-weight: 400; letter-spacing: -0.3px; margin-bottom: 9px; line-height: 1.3; }
+    .proj-card-body p { font-size: 14px; color: var(--mid-gray); line-height: 1.65; font-weight: 300; margin-bottom: 14px; }
+    .mini-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .mini-tag { padding: 3px 10px; background: var(--off-white); border-radius: 980px; font-size: 11px; font-weight: 500; color: #515154; border: 1px solid var(--light-gray); }
+
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal { background: white; border-radius: 22px; max-width: 640px; width: 100%; max-height: 85vh; overflow-y: auto; transform: scale(0.95) translateY(16px); transition: transform 0.25s; box-shadow: 0 28px 72px rgba(0,0,0,0.2); position: relative; }
+    .modal-overlay.open .modal { transform: scale(1) translateY(0); }
+    .modal img.modal-img { width: 100%; height: 260px; object-fit: cover; display: block; }
+    .modal-body { padding: 32px; }
+    .modal-body .proj-cat { margin-bottom: 10px; }
+    .modal-body h2 { font-family: var(--font-display); font-size: 26px; font-weight: 400; letter-spacing: -0.4px; margin-bottom: 14px; }
+    .modal-body p { font-size: 15px; color: #515154; line-height: 1.78; font-weight: 300; margin-bottom: 10px; }
+    .modal-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.07); border: none; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; color: var(--dark-gray); transition: background 0.18s; }
+    .modal-close:hover { background: rgba(0,0,0,0.13); }
+
+    /* CTA */
+    .cta-wrap { background: var(--dark-gray); padding: 80px 32px; text-align: center; }
+    .cta-wrap h2 { font-family: var(--font-display); font-size: 38px; font-weight: 400; color: white; letter-spacing: -1px; margin-bottom: 14px; }
+    .cta-wrap p { font-size: 17px; color: rgba(255,255,255,0.5); margin-bottom: 32px; font-weight: 300; }
+    .cta-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    footer { background: var(--dark-gray); border-top: 1px solid rgba(255,255,255,0.06); padding: 32px; text-align: center; }
+    footer p { font-size: 13px; color: rgba(255,255,255,0.35); }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 860px) {
+      .hero-proj-inner { grid-template-columns: 1fr; }
+      .hero-proj-img img { height: 260px; }
+      .proj-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 580px) {
+      .nav-links { display: none; }
+      .proj-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Nicholas Gagnon</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="mailto:n1ck.gagnon@icloud.com">Contact</a></li>
+  </ul>
+  <a class="nav-resume" href="images/nicholasgagnon.docx" download>Resume ↓</a>
+</nav>
+
+<div class="page-hero">
+  <p class="eyebrow">My Work</p>
+  <h1 class="page-title">Projects</h1>
+  <p class="page-sub">A portfolio of analytics, machine learning, and strategy projects built to solve real problems.</p>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+  <button class="filter-btn" onclick="filterProjects('ml', this)">Machine Learning</button>
+  <button class="filter-btn" onclick="filterProjects('analytics', this)">Analytics</button>
+  <button class="filter-btn" onclick="filterProjects('strategy', this)">Strategy</button>
+</div>
+
+<!-- HERO PROJECT -->
+<div class="hero-proj">
+  <div class="hero-proj-inner">
+    <div class="hero-proj-img">
+      <img src="images/heartdisease.webp" alt="Heart Disease Prediction" />
+    </div>
+    <div class="hero-proj-body">
+      <p class="proj-cat">Machine Learning · Healthcare</p>
+      <h2>Heart Disease Prediction Using Machine Learning</h2>
+      <p>An end-to-end machine learning pipeline built in Python to predict the likelihood of heart disease from real-world clinical data.</p>
+      <p>Addresses a critical public health challenge: can we use patient data to identify those at risk before symptoms worsen?</p>
+      <div class="tech-stack">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Scikit-learn</span>
+        <span class="tech-tag">Pandas</span>
+        <span class="tech-tag">Matplotlib</span>
+        <span class="tech-tag">Feature Engineering</span>
+      </div>
+      <div class="outcome-list">
+        <div class="outcome"><div class="outcome-dot"></div><p>Full data pipeline: cleaning, one-hot encoding, and normalization</p></div>
+        <div class="outcome"><div class="outcome-dot"></div><p>Multiple classification models trained and evaluated</p></div>
+        <div class="outcome"><div class="outcome-dot"></div><p>Feature importance analysis to support clinical decision-making</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ALL PROJECTS -->
+<div class="all-proj">
+  <div class="all-proj-inner">
+    <p class="section-label">All Projects</p>
+    <h2 class="section-title">Selected Work</h2>
+    <div class="proj-grid" id="proj-grid">
+
+      <div class="proj-card fade-in" data-category="strategy" onclick="openModal('sparktank')">
+        <div class="proj-card-img">
+          <img src="images/project-headshot.webp" alt="Spark Tank" />
+        </div>
+        <div class="proj-card-body">
+          <p class="proj-cat">Innovation · Strategy</p>
+          <h3>Spark Tank — 3rd Place</h3>
+          <p>Designed and pitched a creative business solution at Siena College's entrepreneurship competition.</p>
+          <div class="mini-tags">
+            <span class="mini-tag">Business Strategy</span>
+            <span class="mini-tag">Pitch</span>
+            <span class="mini-tag">Innovation</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card fade-in" data-category="ml" onclick="openModal('heartdisease')">
+        <div class="proj-card-img">
+          <img src="images/heartdisease.webp" alt="Heart Disease ML" />
+        </div>
+        <div class="proj-card-body">
+          <p class="proj-cat">Machine Learning · Healthcare</p>
+          <h3>Heart Disease Prediction</h3>
+          <p>Machine learning models in Python predicting heart disease likelihood from clinical data.</p>
+          <div class="mini-tags">
+            <span class="mini-tag">Python</span>
+            <span class="mini-tag">Scikit-learn</span>
+            <span class="mini-tag">Healthcare</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card fade-in" data-category="analytics" onclick="openModal('chronicdisease')">
+        <div class="proj-card-img">
+          <img src="images/datagov.webp" alt="U.S. Chronic Disease" />
+        </div>
+        <div class="proj-card-body">
+          <p class="proj-cat">Data Warehousing · Analytics</p>
+          <h3>U.S. Chronic Disease Indicators</h3>
+          <p>Exploring chronic disease patterns across U.S. states using data warehousing and ML.</p>
+          <div class="mini-tags">
+            <span class="mini-tag">SQL</span>
+            <span class="mini-tag">Data Warehousing</span>
+            <span class="mini-tag">Public Health</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <img class="modal-img" id="modal-img" src="" alt="" />
+    <div class="modal-body">
+      <p class="proj-cat" id="modal-cat"></p>
+      <h2 id="modal-title"></h2>
+      <div id="modal-content"></div>
+      <div class="tech-stack" id="modal-tags" style="margin-top: 18px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <h2>Interested in working together?</h2>
+  <p>Let's build something meaningful with data.</p>
+  <div class="cta-btns">
+    <a class="btn-white" href="mailto:n1ck.gagnon@icloud.com">Get in Touch</a>
+    <a class="btn-outline-white" href="https://www.linkedin.com/in/n1cholasgagnon/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>
+
+<footer>
+  <p>2026 Nicholas Gagnon · <a href="mailto:n1ck.gagnon@icloud.com">n1ck.gagnon@icloud.com</a></p>
+</footer>
+
+<script>
+  // Scroll animations
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+
+  // Filter
+  function filterProjects(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.proj-card').forEach(function(card) {
+      card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
+    });
+  }
+
+  // Modal data
+  var modalData = {
+    sparktank: {
+      img: 'images/project-headshot.webp',
+      cat: 'Innovation · Strategy',
+      title: 'Spark Tank Competition — 3rd Place',
+      content: '<p>Competed in Siena College\'s Spark Tank entrepreneurship competition, hosted by the Stack Center for Innovation and Entrepreneurship.</p><p style="margin-top:10px;">Developed a creative business concept addressing a real-world problem, building a full pitch covering market opportunity, business model, and projected impact. Earned third place, recognizing the strength of the concept, execution, and business case.</p>',
+      tags: ['Business Strategy', 'Entrepreneurship', 'Pitching', 'Market Research']
+    },
+    heartdisease: {
+      img: 'images/heartdisease.webp',
+      cat: 'Machine Learning · Healthcare',
+      title: 'Heart Disease Prediction with Machine Learning',
+      content: '<p>Built at Rensselaer Polytechnic Institute, this project applies machine learning to predict heart disease from clinical data.</p><p style="margin-top:10px;">The pipeline includes end-to-end preprocessing, feature engineering, and model training with multiple classification algorithms. A key focus was model interpretability — using feature importance scores to identify which clinical indicators matter most for early detection.</p>',
+      tags: ['Python', 'Scikit-learn', 'Pandas', 'Feature Engineering', 'Healthcare Analytics']
+    },
+    chronicdisease: {
+      img: 'images/datagov.webp',
+      cat: 'Data Warehousing · Analytics',
+      title: 'U.S. Chronic Disease Indicators',
+      content: '<p>This research project investigates chronic disease patterns across U.S. states and territories using data from the U.S. Department of Health and Human Services.</p><p style="margin-top:10px;">Data warehousing techniques were applied to organize and query large-scale public health data. Machine learning methods were then used to surface meaningful relationships between geographic, demographic, and clinical indicators.</p>',
+      tags: ['SQL', 'Data Warehousing', 'Python', 'Machine Learning', 'Public Health']
+    }
+  };
+
+  function openModal(id) {
+    var d = modalData[id];
+    if (!d) return;
+    document.getElementById('modal-img').src = d.img;
+    document.getElementById('modal-img').alt = d.title;
+    document.getElementById('modal-cat').textContent = d.cat;
+    document.getElementById('modal-title').textContent = d.title;
+    document.getElementById('modal-content').innerHTML = d.content;
+    var tagsEl = document.getElementById('modal-tags');
+    tagsEl.innerHTML = d.tags.map(function(t) { return '<span class="tech-tag">' + t + '</span>'; }).join('');
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modal-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>

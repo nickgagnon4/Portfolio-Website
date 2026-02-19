@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Nicholas Gagnon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #ffffff;
+      --off-white: #f5f5f7;
+      --light-gray: #e8e8ed;
+      --mid-gray: #86868b;
+      --dark-gray: #1d1d1f;
+      --accent: #0071e3;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--dark-gray); background: var(--white); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,0.88); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 32px;
+    }
+    .nav-logo { font-family: var(--font-display); font-size: 17px; font-weight: 500; color: var(--dark-gray); text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--dark-gray); text-decoration: none; opacity: 0.75; transition: opacity 0.2s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; font-weight: 500; }
+    .nav-resume { font-size: 13px; font-weight: 500; color: var(--accent); text-decoration: none; }
+
+    .btn-blue { display: inline-block; padding: 13px 26px; background: var(--accent); color: white; border-radius: 980px; font-size: 15px; font-weight: 500; text-decoration: none; transition: opacity 0.2s; }
+    .btn-blue:hover { opacity: 0.85; }
+    .btn-outline { display: inline-block; padding: 13px 26px; background: transparent; color: var(--accent); border: 1.5px solid var(--accent); border-radius: 980px; font-size: 15px; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+    .btn-outline:hover { background: rgba(0,113,227,0.06); }
+    .btn-dark { display: inline-block; padding: 13px 26px; background: white; color: var(--dark-gray); border-radius: 980px; font-size: 15px; font-weight: 500; text-decoration: none; transition: opacity 0.2s; }
+    .btn-dark:hover { opacity: 0.85; }
+    .btn-outline-white { display: inline-block; padding: 13px 26px; background: transparent; color: white; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 980px; font-size: 15px; font-weight: 500; text-decoration: none; transition: border-color 0.2s; }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.8); }
+
+    /* PAGE HERO */
+    .page-hero { padding: 130px 32px 72px; background: linear-gradient(to bottom, var(--off-white), var(--white)); text-align: center; }
+    .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .page-title { font-family: var(--font-display); font-size: clamp(40px, 6vw, 68px); font-weight: 400; letter-spacing: -2px; margin-bottom: 18px; }
+    .page-sub { font-size: 19px; font-weight: 300; color: var(--mid-gray); max-width: 480px; margin: 0 auto; line-height: 1.6; }
+
+    /* PROFILE */
+    .profile-wrap { max-width: 1080px; margin: 0 auto; padding: 80px 32px; display: grid; grid-template-columns: 320px 1fr; gap: 72px; align-items: start; }
+    .profile-sidebar { position: sticky; top: 68px; }
+    .profile-sidebar img { width: 100%; border-radius: 20px; box-shadow: 0 20px 56px rgba(0,0,0,0.13); aspect-ratio: 4/5; object-fit: cover; margin-bottom: 22px; }
+    .quick-links { background: var(--off-white); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .quick-link { display: flex; align-items: center; justify-content: space-between; padding: 11px 14px; background: white; border-radius: 9px; text-decoration: none; color: var(--dark-gray); font-size: 14px; font-weight: 500; border: 1px solid var(--light-gray); transition: transform 0.15s, box-shadow 0.15s; }
+    .quick-link:hover { transform: translateX(3px); box-shadow: 0 3px 12px rgba(0,0,0,0.07); }
+    .quick-link-arrow { color: var(--accent); }
+
+    .profile-bio h2 { font-family: var(--font-display); font-size: 34px; font-weight: 400; letter-spacing: -0.8px; margin-bottom: 22px; line-height: 1.2; }
+    .profile-bio p { font-size: 17px; color: #515154; line-height: 1.78; font-weight: 300; margin-bottom: 18px; }
+
+    /* TIMELINE */
+    .timeline-wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px 80px; }
+    .section-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(26px, 4vw, 38px); font-weight: 400; letter-spacing: -1px; margin-bottom: 40px; }
+    .timeline { padding-left: 28px; border-left: 1px solid var(--light-gray); }
+    .tl-item { position: relative; margin-bottom: 36px; }
+    .tl-item::before { content: ''; position: absolute; left: -34px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); border: 2px solid white; box-shadow: 0 0 0 1px var(--accent); }
+    .tl-year { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+    .tl-title { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+    .tl-org { font-size: 14px; color: var(--mid-gray); margin-bottom: 8px; }
+    .tl-desc { font-size: 15px; color: #515154; line-height: 1.7; font-weight: 300; }
+
+    /* SKILLS */
+    .skills-wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px 80px; }
+    .skill-cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .skill-cat { background: var(--off-white); border-radius: 18px; padding: 26px; border: 1px solid var(--light-gray); }
+    .skill-cat h4 { font-size: 15px; font-weight: 600; margin-bottom: 14px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 7px; }
+    .pill { padding: 4px 13px; background: white; border-radius: 980px; font-size: 13px; border: 1px solid var(--light-gray); }
+
+    /* PHOTOS */
+    .photos-wrap { background: var(--off-white); padding: 80px 32px; }
+    .photos-inner { max-width: 1080px; margin: 0 auto; }
+    .photos-inner h2 { font-family: var(--font-display); font-size: 34px; font-weight: 400; letter-spacing: -1px; margin-bottom: 32px; }
+    .photo-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+    .photo-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 14px; box-shadow: 0 6px 24px rgba(0,0,0,0.09); }
+
+    /* CONTACT */
+    .cta-wrap { background: var(--dark-gray); padding: 80px 32px; text-align: center; }
+    .cta-wrap h2 { font-family: var(--font-display); font-size: 38px; font-weight: 400; color: white; letter-spacing: -1px; margin-bottom: 14px; }
+    .cta-wrap p { font-size: 17px; color: rgba(255,255,255,0.5); margin-bottom: 32px; font-weight: 300; }
+    .cta-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    footer { background: var(--dark-gray); border-top: 1px solid rgba(255,255,255,0.06); padding: 32px; text-align: center; }
+    footer p { font-size: 13px; color: rgba(255,255,255,0.35); }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 860px) {
+      .profile-wrap { grid-template-columns: 1fr; }
+      .profile-sidebar { position: static; }
+      .skill-cats { grid-template-columns: 1fr 1fr; }
+      .photo-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 580px) {
+      .nav-links { display: none; }
+      .skill-cats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Nicholas Gagnon</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="mailto:n1ck.gagnon@icloud.com">Contact</a></li>
+  </ul>
+  <a class="nav-resume" href="images/nicholasgagnon.docx" download>Resume ↓</a>
+</nav>
+
+<div class="page-hero">
+  <p class="eyebrow">About Me</p>
+  <h1 class="page-title">Hi, I'm Nick.</h1>
+  <p class="page-sub">Graduate student, data analyst, and strategic thinker based in Saratoga Springs, NY.</p>
+</div>
+
+<!-- PROFILE -->
+<div class="profile-wrap">
+  <div class="profile-sidebar fade-in">
+    <img src="images/nicholasgagnon.webp" alt="Nicholas Gagnon" />
+    <div class="quick-links">
+      <a class="quick-link" href="https://www.linkedin.com/in/n1cholasgagnon/" target="_blank" rel="noopener">
+        <span>LinkedIn</span><span class="quick-link-arrow">→</span>
+      </a>
+      <a class="quick-link" href="http://github.com/nickgagnon4" target="_blank" rel="noopener">
+        <span>GitHub</span><span class="quick-link-arrow">→</span>
+      </a>
+      <a class="quick-link" href="images/nicholasgagnon.docx" download>
+        <span>Download Resume</span><span class="quick-link-arrow">↓</span>
+      </a>
+      <a class="quick-link" href="mailto:n1ck.gagnon@icloud.com">
+        <span>Send Email</span><span class="quick-link-arrow">→</span>
+      </a>
+    </div>
+  </div>
+  <div class="profile-bio fade-in">
+    <h2>Analyst. Strategist.<br>Problem solver.</h2>
+    <p>I'm a graduate student at Rensselaer Polytechnic Institute pursuing a Master's in Business Analytics. My academic journey has taken me through the intersection of data science and strategic thinking — two disciplines I believe are most powerful when combined.</p>
+    <p>With a background rooted in marketing and business strategy, I've developed an ability to communicate technical findings to non-technical stakeholders. I don't just build models — I tell stories with data that drive real decisions.</p>
+    <p>Outside of academics, I've competed in entrepreneurship competitions, collaborated on cross-functional research projects, and continuously explored how emerging analytics tools can reshape the way businesses operate.</p>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline-wrap fade-in">
+  <p class="section-label">Background</p>
+  <h2 class="section-title">Education &amp; Experience</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <p class="tl-year">2024 – Present</p>
+      <p class="tl-title">M.S. Business Analytics</p>
+      <p class="tl-org">Rensselaer Polytechnic Institute · Troy, NY</p>
+      <p class="tl-desc">Graduate coursework in machine learning, data warehousing, statistical modeling, and business intelligence. Focus on applying quantitative methods to real-world business problems.</p>
+    </div>
+    <div class="tl-item">
+      <p class="tl-year">2023</p>
+      <p class="tl-title">Spark Tank — 3rd Place</p>
+      <p class="tl-org">Siena College · Stack Center for Innovation</p>
+      <p class="tl-desc">Developed a business concept and pitch with measurable social and economic impact. Competed before a panel of judges from the entrepreneurship and venture community.</p>
+    </div>
+    <div class="tl-item">
+      <p class="tl-year">2020 – 2024</p>
+      <p class="tl-title">B.S. Business Administration</p>
+      <p class="tl-org">Siena College · Loudonville, NY</p>
+      <p class="tl-desc">Majored in Marketing and Strategy. Built a foundation in brand development, consumer behavior, market research, and business communications.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="skills-wrap fade-in">
+  <p class="section-label">Toolkit</p>
+  <h2 class="section-title">Skills &amp; Competencies</h2>
+  <div class="skill-cats">
+    <div class="skill-cat">
+      <h4>Technical</h4>
+      <div class="pills">
+        <span class="pill">Python</span>
+        <span class="pill">SQL</span>
+        <span class="pill">HTML</span>
+        <span class="pill">CSS</span>
+        <span class="pill">JavaScript</span>
+        <span class="pill">Pandas</span>
+        <span class="pill">Scikit-learn</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Analytics</h4>
+      <div class="pills">
+        <span class="pill">Machine Learning</span>
+        <span class="pill">Data Viz</span>
+        <span class="pill">Feature Engineering</span>
+        <span class="pill">Data Warehousing</span>
+        <span class="pill">Statistical Analysis</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <h4>Business</h4>
+      <div class="pills">
+        <span class="pill">Brand Strategy</span>
+        <span class="pill">Market Research</span>
+        <span class="pill">Go-to-Market</span>
+        <span class="pill">Storytelling</span>
+        <span class="pill">Consulting</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTOS -->
+<div class="photos-wrap fade-in">
+  <div class="photos-inner">
+    <p class="section-label">Life Outside Work</p>
+    <h2>Beyond the data.</h2>
+    <div class="photo-grid">
+      <img src="images/photo3.jpeg" alt="5K Race" />
+      <img src="images/photo2.jpeg" alt="Nicholas with friends" style="object-position: center top;" />
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <h2>Ready to connect?</h2>
+  <p>Open to full-time roles, internships, and interesting conversations.</p>
+  <div class="cta-btns">
+    <a class="btn-dark" href="mailto:n1ck.gagnon@icloud.com">Email Me</a>
+    <a class="btn-outline-white" href="https://www.linkedin.com/in/n1cholasgagnon/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn-outline-white" href="images/nicholasgagnon.docx" download>Resume</a>
+  </div>
+</div>
+
+<footer>
+  <p>2026 Nicholas Gagnon · <a href="mailto:n1ck.gagnon@icloud.com">n1ck.gagnon@icloud.com</a></p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach((el) => obs.observe(el));
+</script>
+
+</body>
+</html>
